@@ -1,4 +1,4 @@
-// app/layout.tsx - Fully SEO Optimized Code
+// app/layout.tsx - Fully SEO Optimized Code (CORRECTED)
 
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Pacifico } from "next/font/google";
@@ -101,7 +101,7 @@ export default function RootLayout({
         
         {/* ====== GOOGLE KO AAPKI WEBSITE KI POORI JAANKARI DENE WALA CODE ====== */}
         <script
-          type: "application/ld+json"
+          type="application/ld+json" // <-- DEKHIYE, YEH LINE AB SAHI HAI
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
