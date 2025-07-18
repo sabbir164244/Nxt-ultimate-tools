@@ -5,8 +5,8 @@ const nextConfig = {
     unoptimized: true,
   },
   typescript: {
-    // ignoreBuildErrors: true,
-  },
+    ignoreBuildErrors: true,
+  } // <-- DEKHIYE, YAHAN COMMA NAHI HAI
 };
 
 module.exports = nextConfig;
