@@ -22,7 +22,8 @@ import QRCodeGenerator from './QRCodeGenerator';
 import JSONFormatter from './JSONFormatter';
 import AgeCalculator from './AgeCalculator';
 import UnitConverter from './UnitConverter';
-import LoanCalculator from './LoanCalculator'; // <-- NYA IMPORT
+import LoanCalculator from './LoanCalculator';
+import URLEncoderDecoder from './URLEncoderDecoder'; // <-- NYA IMPORT
 
 const allTools = [
   { id: 'age-calculator', name: 'Age Calculator', icon: 'ri-calendar-2-line', category: 'Utility', component: AgeCalculator },
@@ -35,7 +36,7 @@ const allTools = [
   { id: 'image-framing', name: 'Image Framing', icon: 'ri-image-2-line', category: 'Image', component: ImageFraming },
   { id: 'image-resizer', name: 'Image Resizer', icon: 'ri-scissors-line', category: 'Image', component: ImageResizer },
   { id: 'json-formatter', name: 'JSON Formatter', icon: 'ri-code-s-slash-line', category: 'Developer', component: JSONFormatter },
-  { id: 'loan-calculator', name: 'Loan/EMI Calculator', icon: 'ri-bank-card-line', category: 'Finance', component: LoanCalculator }, // <-- NYA TOOL ADD HUA
+  { id: 'loan-calculator', name: 'Loan/EMI Calculator', icon: 'ri-bank-card-line', category: 'Finance', component: LoanCalculator },
   { id: 'notepad', name: 'Notepad', icon: 'ri-file-text-line', category: 'Utility', component: Notepad },
   { id: 'password-generator', name: 'Password Generator', icon: 'ri-lock-password-line', category: 'Security', component: PasswordGenerator },
   { id: 'pdf-generator', name: 'PDF Generator', icon: 'ri-file-pdf-line', category: 'PDF', component: PDFGenerator },
@@ -45,10 +46,11 @@ const allTools = [
   { id: 'qr-code-generator', name: 'QR Code Generator', icon: 'ri-qr-code-line', category: 'Developer', component: QRCodeGenerator },
   { id: 'text-to-voice', name: 'Text to Voice', icon: 'ri-mic-line', category: 'Audio', component: TextToVoice },
   { id: 'unit-converter', name: 'Unit Converter', icon: 'ri-ruler-2-line', category: 'Utility', component: UnitConverter },
+  { id: 'url-encoder-decoder', name: 'URL Encoder/Decoder', icon: 'ri-link', category: 'Developer', component: URLEncoderDecoder }, // <-- NYA TOOL ADD HUA
   { id: 'word-to-pdf', name: 'Word to PDF', icon: 'ri-file-word-line', category: 'PDF', component: WordToPDF },
 ];
 
-const categories = ['All', 'PDF', 'Image', 'Text', 'Audio', 'Developer', 'Finance', 'Utility', 'Security', 'Health', 'Design', 'Game']; // <-- NYI CATEGORY ADD HUI
+const categories = ['All', 'PDF', 'Image', 'Text', 'Audio', 'Developer', 'Finance', 'Utility', 'Security', 'Health', 'Design', 'Game'];
 
 export default function ToolsPage() {
   // ... (rest of the code is the same)
@@ -171,4 +173,4 @@ export default function ToolsPage() {
       </div>
     </div>
   );
-   }
+      }
