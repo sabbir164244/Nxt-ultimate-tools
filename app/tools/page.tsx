@@ -20,10 +20,11 @@ import Puzzle from './Puzzle';
 import CaseConverter from './CaseConverter';
 import QRCodeGenerator from './QRCodeGenerator';
 import JSONFormatter from './JSONFormatter';
-import AgeCalculator from './AgeCalculator'; // <-- NYA IMPORT
+import AgeCalculator from './AgeCalculator';
+import UnitConverter from './UnitConverter'; // <-- NYA IMPORT
 
 const allTools = [
-  { id: 'age-calculator', name: 'Age Calculator', icon: 'ri-calendar-2-line', category: 'Utility', component: AgeCalculator }, // <-- NYA TOOL ADD HUA
+  { id: 'age-calculator', name: 'Age Calculator', icon: 'ri-calendar-2-line', category: 'Utility', component: AgeCalculator },
   { id: 'bmi-calculator', name: 'BMI Calculator', icon: 'ri-heart-pulse-line', category: 'Health', component: BMICalculator },
   { id: 'calculator', name: 'Dynamic Calculator', icon: 'ri-calculator-line', category: 'Utility', component: Calculator },
   { id: 'case-converter', name: 'Case Converter', icon: 'ri-font-case', category: 'Text', component: CaseConverter },
@@ -41,6 +42,7 @@ const allTools = [
   { id: 'puzzle', name: 'Puzzle Game', icon: 'ri-puzzle-line', category: 'Game', component: Puzzle },
   { id: 'qr-code-generator', name: 'QR Code Generator', icon: 'ri-qr-code-line', category: 'Developer', component: QRCodeGenerator },
   { id: 'text-to-voice', name: 'Text to Voice', icon: 'ri-mic-line', category: 'Audio', component: TextToVoice },
+  { id: 'unit-converter', name: 'Unit Converter', icon: 'ri-ruler-2-line', category: 'Utility', component: UnitConverter }, // <-- NYA TOOL ADD HUA
   { id: 'word-to-pdf', name: 'Word to PDF', icon: 'ri-file-word-line', category: 'PDF', component: WordToPDF },
 ];
 
@@ -167,4 +169,4 @@ export default function ToolsPage() {
       </div>
     </div>
   );
-}
+            }
