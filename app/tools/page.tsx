@@ -17,7 +17,8 @@ import BMICalculator from './BMICalculator';
 import Notepad from './Notepad';
 import ColorPicker from './ColorPicker';
 import Puzzle from './Puzzle';
-import CaseConverter from './CaseConverter'; // <-- NYA IMPORT
+import CaseConverter from './CaseConverter';
+import QRCodeGenerator from './QRCodeGenerator'; // <-- NYA IMPORT
 
 const allTools = [
   { id: 'pdf-generator', name: 'PDF Generator', icon: 'ri-file-pdf-line', category: 'PDF', component: PDFGenerator },
@@ -28,8 +29,10 @@ const allTools = [
   { id: 'image-resizer', name: 'Image Resizer', icon: 'ri-scissors-line', category: 'Image', component: ImageResizer },
   { id: 'image-cropper', name: 'Image Cropper', icon: 'ri-crop-line', category: 'Image', component: ImageCropper },
   { id: 'image-framing', name: 'Image Framing', icon: 'ri-image-2-line', category: 'Image', component: ImageFraming },
-  { id: 'case-converter', name: 'Case Converter', icon: 'ri-font-case', category: 'Text', component: CaseConverter }, // <-- NYA TOOL ADD HUA
+  { id: 'case-converter', name: 'Case Converter', icon: 'ri-font-case', category: 'Text', component: CaseConverter },
   { id: 'text-to-voice', name: 'Text to Voice', icon: 'ri-mic-line', category: 'Audio', component: TextToVoice },
+  { id: 'qr-code-generator', name: 'QR Code Generator', icon: 'ri-qr-code-line', category: 'Developer', component: QRCodeGenerator }, // <-- NYA TOOL ADD HUA
+  { id: 'json-formatter', name: 'JSON Formatter', icon: 'ri-code-s-slash-line', category: 'Developer', component: () => <div className="p-6 text-white text-center">Coming Soon!</div> }, // Example for coming soon
   { id: 'calculator', name: 'Dynamic Calculator', icon: 'ri-calculator-line', category: 'Utility', component: Calculator },
   { id: 'notepad', name: 'Notepad', icon: 'ri-file-text-line', category: 'Utility', component: Notepad },
   { id: 'password-generator', name: 'Password Generator', icon: 'ri-lock-password-line', category: 'Security', component: PasswordGenerator },
@@ -38,14 +41,16 @@ const allTools = [
   { id: 'puzzle', name: 'Puzzle Game', icon: 'ri-puzzle-line', category: 'Game', component: Puzzle },
 ];
 
-const categories = ['All', 'PDF', 'Image', 'Text', 'Audio', 'Utility', 'Security', 'Health', 'Design', 'Game']; // <-- NYI CATEGORY ADD HUI
+const categories = ['All', 'PDF', 'Image', 'Text', 'Audio', 'Developer', 'Utility', 'Security', 'Health', 'Design', 'Game']; // <-- NYI CATEGORY ADD HUI
 
 export default function ToolsPage() {
+  // ... (rest of the code is the same, no need to copy it again)
+  // I am providing the full code for safety
   const [selectedTool, setSelectedTool] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredTools = allTools.filter(tool => {
+  const filteredTools = allTools.sort((a,b) => a.name.localeCompare(b.name)).filter(tool => {
     const matchesCategory = selectedCategory === 'All' || tool.category === selectedCategory;
     const matchesSearch = tool.name.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
@@ -160,4 +165,4 @@ export default function ToolsPage() {
       </div>
     </div>
   );
-   }
+                  }
