@@ -28,7 +28,8 @@ import URLEncoderDecoder from './URLEncoderDecoder';
 import ImageToBase64 from './ImageToBase64';
 import MarkdownPreviewer from './MarkdownPreviewer';
 import SignaturePad from './SignaturePad';
-import MemeGenerator from './MemeGenerator'; // <-- NYA IMPORT
+import MemeGenerator from './MemeGenerator';
+import GradientGenerator from './GradientGenerator'; // <-- NYA IMPORT
 
 const allTools = [
   { id: 'age-calculator', name: 'Age Calculator', icon: 'ri-calendar-2-line', category: 'Utility', component: AgeCalculator },
@@ -36,6 +37,7 @@ const allTools = [
   { id: 'calculator', name: 'Dynamic Calculator', icon: 'ri-calculator-line', category: 'Utility', component: Calculator },
   { id: 'case-converter', name: 'Case Converter', icon: 'ri-font-case', category: 'Text', component: CaseConverter },
   { id: 'color-picker', name: 'Color Picker', icon: 'ri-palette-line', category: 'Design', component: ColorPicker },
+  { id: 'gradient-generator', name: 'Gradient Generator', icon: 'ri-gradienter-line', category: 'Design', component: GradientGenerator }, // <-- NYA TOOL ADD HUA
   { id: 'image-compressor', name: 'Image Compressor', icon: 'ri-image-line', category: 'Image', component: ImageCompressor },
   { id: 'image-cropper', name: 'Image Cropper', icon: 'ri-crop-line', category: 'Image', component: ImageCropper },
   { id: 'image-framing', name: 'Image Framing', icon: 'ri-image-2-line', category: 'Image', component: ImageFraming },
@@ -44,7 +46,7 @@ const allTools = [
   { id: 'json-formatter', name: 'JSON Formatter', icon: 'ri-code-s-slash-line', category: 'Developer', component: JSONFormatter },
   { id: 'loan-calculator', name: 'Loan/EMI Calculator', icon: 'ri-bank-card-line', category: 'Finance', component: LoanCalculator },
   { id: 'markdown-previewer', name: 'Markdown Previewer', icon: 'ri-markdown-line', category: 'Developer', component: MarkdownPreviewer },
-  { id: 'meme-generator', name: 'Meme Generator', icon: 'ri-emotion-laugh-line', category: 'Fun', component: MemeGenerator }, // <-- NYA TOOL ADD HUA
+  { id: 'meme-generator', name: 'Meme Generator', icon: 'ri-emotion-laugh-line', category: 'Fun', component: MemeGenerator },
   { id: 'notepad', name: 'Notepad', icon: 'ri-file-text-line', category: 'Utility', component: Notepad },
   { id: 'password-generator', name: 'Password Generator', icon: 'ri-lock-password-line', category: 'Security', component: PasswordGenerator },
   { id: 'pdf-generator', name: 'PDF Generator', icon: 'ri-file-pdf-line', category: 'PDF', component: PDFGenerator },
@@ -59,7 +61,7 @@ const allTools = [
   { id: 'word-to-pdf', name: 'Word to PDF', icon: 'ri-file-word-line', category: 'PDF', component: WordToPDF },
 ];
 
-const categories = ['All', 'PDF', 'Image', 'Text', 'Audio', 'Developer', 'Finance', 'Utility', 'Security', 'Health', 'Design', 'Game', 'Fun']; // <-- NYI CATEGORY ADD HUI
+const categories = ['All', 'PDF', 'Image', 'Text', 'Audio', 'Developer', 'Finance', 'Utility', 'Security', 'Health', 'Design', 'Game', 'Fun'];
 
 export default function ToolsPage() {
   // ... (rest of the code is the same)
@@ -182,4 +184,4 @@ export default function ToolsPage() {
       </div>
     </div>
   );
-}
+              }
