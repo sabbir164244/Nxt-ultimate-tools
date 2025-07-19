@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-// ... (all previous imports)
 import PDFGenerator from './PDFGenerator';
 import WordToPDF from './WordToPDF';
 import TextToVoice from './TextToVoice';
@@ -31,15 +30,17 @@ import SignaturePad from './SignaturePad';
 import MemeGenerator from './MemeGenerator';
 import GradientGenerator from './GradientGenerator';
 import HashGenerator from './HashGenerator';
-import DiscountCalculator from './DiscountCalculator'; // <-- NYA IMPORT
+import DiscountCalculator from './DiscountCalculator';
+import ImageCaptionGenerator from './ImageCaptionGenerator';
 
 const allTools = [
   { id: 'age-calculator', name: 'Age Calculator', icon: 'ri-calendar-2-line', category: 'Utility', component: AgeCalculator },
+  { id: 'ai-image-caption', name: 'AI Image Caption', icon: 'ri-robot-2-line', category: 'AI', component: ImageCaptionGenerator, isFeatured: true },
   { id: 'bmi-calculator', name: 'BMI Calculator', icon: 'ri-heart-pulse-line', category: 'Health', component: BMICalculator },
   { id: 'calculator', name: 'Dynamic Calculator', icon: 'ri-calculator-line', category: 'Utility', component: Calculator },
   { id: 'case-converter', name: 'Case Converter', icon: 'ri-font-case', category: 'Text', component: CaseConverter },
   { id: 'color-picker', name: 'Color Picker', icon: 'ri-palette-line', category: 'Design', component: ColorPicker },
-  { id: 'discount-calculator', name: 'Discount Calculator', icon: 'ri-price-tag-3-line', category: 'Finance', component: DiscountCalculator }, // <-- NYA TOOL ADD HUA
+  { id: 'discount-calculator', name: 'Discount Calculator', icon: 'ri-price-tag-3-line', category: 'Finance', component: DiscountCalculator },
   { id: 'gradient-generator', name: 'Gradient Generator', icon: 'ri-gradienter-line', category: 'Design', component: GradientGenerator },
   { id: 'hash-generator', name: 'Hash Generator', icon: 'ri-fingerprint-2-line', category: 'Security', component: HashGenerator },
   { id: 'image-compressor', name: 'Image Compressor', icon: 'ri-image-line', category: 'Image', component: ImageCompressor },
@@ -65,15 +66,18 @@ const allTools = [
   { id: 'word-to-pdf', name: 'Word to PDF', icon: 'ri-file-word-line', category: 'PDF', component: WordToPDF },
 ];
 
-const categories = ['All', 'PDF', 'Image', 'Text', 'Audio', 'Developer', 'Finance', 'Utility', 'Security', 'Health', 'Design', 'Game', 'Fun'];
+const categories = ['All', 'AI', 'PDF', 'Image', 'Text', 'Audio', 'Developer', 'Finance', 'Utility', 'Security', 'Health', 'Design', 'Game', 'Fun'];
 
 export default function ToolsPage() {
-  // ... (rest of the code is the same)
   const [selectedTool, setSelectedTool] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredTools = allTools.sort((a,b) => a.name.localeCompare(b.name)).filter(tool => {
+  const filteredTools = allTools.sort((a,b) => {
+    if (a.isFeatured && !b.isFeatured) return -1;
+    if (!a.isFeatured && b.isFeatured) return 1;
+    return a.name.localeCompare(b.name);
+  }).filter(tool => {
     const matchesCategory = selectedCategory === 'All' || tool.category === selectedCategory;
     const matchesSearch = tool.name.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
@@ -163,8 +167,18 @@ export default function ToolsPage() {
               <div
                 key={tool.id}
                 onClick={() => setSelectedTool(tool)}
-                className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:scale-105 cursor-pointer group"
+                className={`bg-white/10 backdrop-blur-lg rounded-xl p-6 border transition-all duration-300 transform hover:scale-105 cursor-pointer group relative overflow-hidden ${
+                    tool.isFeatured 
+                    ? 'border-fuchsia-500/50 hover:border-fuchsia-400' 
+                    : 'border-white/20 hover:bg-white/15'
+                }`}
               >
+                {tool.isFeatured && (
+                  <div className="absolute top-0 right-0 px-3 py-1 bg-gradient-to-r from-teal-400 to-fuchsia-500 text-white text-xs font-bold rounded-bl-lg">
+                    ✨ AI POWERED
+                  </div>
+                )}
+
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   <i className={`${tool.icon} text-white text-xl`}></i>
                 </div>
@@ -188,4 +202,4 @@ export default function ToolsPage() {
       </div>
     </div>
   );
-              }
+}
