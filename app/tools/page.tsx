@@ -32,10 +32,12 @@ import GradientGenerator from './GradientGenerator';
 import HashGenerator from './HashGenerator';
 import DiscountCalculator from './DiscountCalculator';
 import ImageCaptionGenerator from './ImageCaptionGenerator';
+import BackgroundRemover from './BackgroundRemover';
 
 const allTools = [
   { id: 'age-calculator', name: 'Age Calculator', icon: 'ri-calendar-2-line', category: 'Utility', component: AgeCalculator },
-  { id: 'ai-image-caption', name: 'AI Image Caption', icon: 'ri-robot-2-line', category: 'AI', component: ImageCaptionGenerator, isFeatured: true },
+  { id: 'ai-background-remover', name: 'AI Background Remover', icon: 'ri-magic-line', category: 'AI', component: BackgroundRemover },
+  { id: 'ai-image-caption', name: 'AI Image Caption', icon: 'ri-robot-2-line', category: 'AI', component: ImageCaptionGenerator },
   { id: 'bmi-calculator', name: 'BMI Calculator', icon: 'ri-heart-pulse-line', category: 'Health', component: BMICalculator },
   { id: 'calculator', name: 'Dynamic Calculator', icon: 'ri-calculator-line', category: 'Utility', component: Calculator },
   { id: 'case-converter', name: 'Case Converter', icon: 'ri-font-case', category: 'Text', component: CaseConverter },
@@ -74,8 +76,10 @@ export default function ToolsPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
   const filteredTools = allTools.sort((a,b) => {
-    if (a.isFeatured && !b.isFeatured) return -1;
-    if (!a.isFeatured && b.isFeatured) return 1;
+    const aIsAI = a.category === 'AI';
+    const bIsAI = b.category === 'AI';
+    if (aIsAI && !bIsAI) return -1;
+    if (!aIsAI && bIsAI) return 1;
     return a.name.localeCompare(b.name);
   }).filter(tool => {
     const matchesCategory = selectedCategory === 'All' || tool.category === selectedCategory;
@@ -168,17 +172,16 @@ export default function ToolsPage() {
                 key={tool.id}
                 onClick={() => setSelectedTool(tool)}
                 className={`bg-white/10 backdrop-blur-lg rounded-xl p-6 border transition-all duration-300 transform hover:scale-105 cursor-pointer group relative overflow-hidden ${
-                    tool.isFeatured 
+                    tool.category === 'AI' 
                     ? 'border-fuchsia-500/50 hover:border-fuchsia-400' 
                     : 'border-white/20 hover:bg-white/15'
                 }`}
               >
-                {tool.isFeatured && (
-                  <div className="absolute top-0 right-0 px-3 py-1 bg-gradient-to-r from-teal-400 to-fuchsia-500 text-white text-xs font-bold rounded-bl-lg">
-                    ✨ AI POWERED
+                {tool.category === 'AI' && (
+                  <div className="absolute top-0 right-0 px-3 py-1 bg-gradient-to-r from-purple-500 to-red-500 text-white text-xs font-bold rounded-bl-lg">
+                    ✨ AI MAGIC
                   </div>
                 )}
-
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   <i className={`${tool.icon} text-white text-xl`}></i>
                 </div>
@@ -202,4 +205,4 @@ export default function ToolsPage() {
       </div>
     </div>
   );
-}
+                }
