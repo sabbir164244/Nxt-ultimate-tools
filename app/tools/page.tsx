@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -18,26 +17,28 @@ import BMICalculator from './BMICalculator';
 import Notepad from './Notepad';
 import ColorPicker from './ColorPicker';
 import Puzzle from './Puzzle';
+import CaseConverter from './CaseConverter'; // <-- NYA IMPORT
 
 const allTools = [
   { id: 'pdf-generator', name: 'PDF Generator', icon: 'ri-file-pdf-line', category: 'PDF', component: PDFGenerator },
   { id: 'word-to-pdf', name: 'Word to PDF', icon: 'ri-file-word-line', category: 'PDF', component: WordToPDF },
-  { id: 'text-to-voice', name: 'Text to Voice', icon: 'ri-mic-line', category: 'Audio', component: TextToVoice },
+  { id: 'pdf-splitter', name: 'PDF Splitter', icon: 'ri-file-reduce-line', category: 'PDF', component: PDFSplitter },
+  { id: 'pdf-merger', name: 'PDF Merger', icon: 'ri-file-copy-line', category: 'PDF', component: PDFMerger },
   { id: 'image-compressor', name: 'Image Compressor', icon: 'ri-image-line', category: 'Image', component: ImageCompressor },
   { id: 'image-resizer', name: 'Image Resizer', icon: 'ri-scissors-line', category: 'Image', component: ImageResizer },
   { id: 'image-cropper', name: 'Image Cropper', icon: 'ri-crop-line', category: 'Image', component: ImageCropper },
-  { id: 'pdf-splitter', name: 'PDF Splitter', icon: 'ri-file-reduce-line', category: 'PDF', component: PDFSplitter },
-  { id: 'pdf-merger', name: 'PDF Merger', icon: 'ri-file-copy-line', category: 'PDF', component: PDFMerger },
   { id: 'image-framing', name: 'Image Framing', icon: 'ri-image-2-line', category: 'Image', component: ImageFraming },
+  { id: 'case-converter', name: 'Case Converter', icon: 'ri-font-case', category: 'Text', component: CaseConverter }, // <-- NYA TOOL ADD HUA
+  { id: 'text-to-voice', name: 'Text to Voice', icon: 'ri-mic-line', category: 'Audio', component: TextToVoice },
   { id: 'calculator', name: 'Dynamic Calculator', icon: 'ri-calculator-line', category: 'Utility', component: Calculator },
+  { id: 'notepad', name: 'Notepad', icon: 'ri-file-text-line', category: 'Utility', component: Notepad },
   { id: 'password-generator', name: 'Password Generator', icon: 'ri-lock-password-line', category: 'Security', component: PasswordGenerator },
   { id: 'bmi-calculator', name: 'BMI Calculator', icon: 'ri-heart-pulse-line', category: 'Health', component: BMICalculator },
-  { id: 'notepad', name: 'Notepad', icon: 'ri-file-text-line', category: 'Utility', component: Notepad },
   { id: 'color-picker', name: 'Color Picker', icon: 'ri-palette-line', category: 'Design', component: ColorPicker },
   { id: 'puzzle', name: 'Puzzle Game', icon: 'ri-puzzle-line', category: 'Game', component: Puzzle },
 ];
 
-const categories = ['All', 'PDF', 'Image', 'Audio', 'Utility', 'Security', 'Health', 'Design', 'Game'];
+const categories = ['All', 'PDF', 'Image', 'Text', 'Audio', 'Utility', 'Security', 'Health', 'Design', 'Game']; // <-- NYI CATEGORY ADD HUI
 
 export default function ToolsPage() {
   const [selectedTool, setSelectedTool] = useState(null);
@@ -159,4 +160,4 @@ export default function ToolsPage() {
       </div>
     </div>
   );
-}
+   }
