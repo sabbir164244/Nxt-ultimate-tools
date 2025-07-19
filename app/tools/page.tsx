@@ -26,7 +26,8 @@ import UnitConverter from './UnitConverter';
 import LoanCalculator from './LoanCalculator';
 import URLEncoderDecoder from './URLEncoderDecoder';
 import ImageToBase64 from './ImageToBase64';
-import MarkdownPreviewer from './MarkdownPreviewer'; // <-- NYA IMPORT
+import MarkdownPreviewer from './MarkdownPreviewer';
+import SignaturePad from './SignaturePad'; // <-- NYA IMPORT
 
 const allTools = [
   { id: 'age-calculator', name: 'Age Calculator', icon: 'ri-calendar-2-line', category: 'Utility', component: AgeCalculator },
@@ -41,7 +42,7 @@ const allTools = [
   { id: 'image-to-base64', name: 'Image to Base64', icon: 'ri-image-edit-line', category: 'Developer', component: ImageToBase64 },
   { id: 'json-formatter', name: 'JSON Formatter', icon: 'ri-code-s-slash-line', category: 'Developer', component: JSONFormatter },
   { id: 'loan-calculator', name: 'Loan/EMI Calculator', icon: 'ri-bank-card-line', category: 'Finance', component: LoanCalculator },
-  { id: 'markdown-previewer', name: 'Markdown Previewer', icon: 'ri-markdown-line', category: 'Developer', component: MarkdownPreviewer }, // <-- NYA TOOL ADD HUA
+  { id: 'markdown-previewer', name: 'Markdown Previewer', icon: 'ri-markdown-line', category: 'Developer', component: MarkdownPreviewer },
   { id: 'notepad', name: 'Notepad', icon: 'ri-file-text-line', category: 'Utility', component: Notepad },
   { id: 'password-generator', name: 'Password Generator', icon: 'ri-lock-password-line', category: 'Security', component: PasswordGenerator },
   { id: 'pdf-generator', name: 'PDF Generator', icon: 'ri-file-pdf-line', category: 'PDF', component: PDFGenerator },
@@ -49,6 +50,7 @@ const allTools = [
   { id: 'pdf-splitter', name: 'PDF Splitter', icon: 'ri-file-reduce-line', category: 'PDF', component: PDFSplitter },
   { id: 'puzzle', name: 'Puzzle Game', icon: 'ri-puzzle-line', category: 'Game', component: Puzzle },
   { id: 'qr-code-generator', name: 'QR Code Generator', icon: 'ri-qr-code-line', category: 'Developer', component: QRCodeGenerator },
+  { id: 'signature-pad', name: 'Signature Pad', icon: 'ri-pencil-ruler-2-line', category: 'Utility', component: SignaturePad }, // <-- NYA TOOL ADD HUA
   { id: 'text-to-voice', name: 'Text to Voice', icon: 'ri-mic-line', category: 'Audio', component: TextToVoice },
   { id: 'unit-converter', name: 'Unit Converter', icon: 'ri-ruler-2-line', category: 'Utility', component: UnitConverter },
   { id: 'url-encoder-decoder', name: 'URL Encoder/Decoder', icon: 'ri-link', category: 'Developer', component: URLEncoderDecoder },
@@ -178,4 +180,4 @@ export default function ToolsPage() {
       </div>
     </div>
   );
-   }
+  }
