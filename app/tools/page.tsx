@@ -21,7 +21,8 @@ import CaseConverter from './CaseConverter';
 import QRCodeGenerator from './QRCodeGenerator';
 import JSONFormatter from './JSONFormatter';
 import AgeCalculator from './AgeCalculator';
-import UnitConverter from './UnitConverter'; // <-- NYA IMPORT
+import UnitConverter from './UnitConverter';
+import LoanCalculator from './LoanCalculator'; // <-- NYA IMPORT
 
 const allTools = [
   { id: 'age-calculator', name: 'Age Calculator', icon: 'ri-calendar-2-line', category: 'Utility', component: AgeCalculator },
@@ -34,6 +35,7 @@ const allTools = [
   { id: 'image-framing', name: 'Image Framing', icon: 'ri-image-2-line', category: 'Image', component: ImageFraming },
   { id: 'image-resizer', name: 'Image Resizer', icon: 'ri-scissors-line', category: 'Image', component: ImageResizer },
   { id: 'json-formatter', name: 'JSON Formatter', icon: 'ri-code-s-slash-line', category: 'Developer', component: JSONFormatter },
+  { id: 'loan-calculator', name: 'Loan/EMI Calculator', icon: 'ri-bank-card-line', category: 'Finance', component: LoanCalculator }, // <-- NYA TOOL ADD HUA
   { id: 'notepad', name: 'Notepad', icon: 'ri-file-text-line', category: 'Utility', component: Notepad },
   { id: 'password-generator', name: 'Password Generator', icon: 'ri-lock-password-line', category: 'Security', component: PasswordGenerator },
   { id: 'pdf-generator', name: 'PDF Generator', icon: 'ri-file-pdf-line', category: 'PDF', component: PDFGenerator },
@@ -42,11 +44,11 @@ const allTools = [
   { id: 'puzzle', name: 'Puzzle Game', icon: 'ri-puzzle-line', category: 'Game', component: Puzzle },
   { id: 'qr-code-generator', name: 'QR Code Generator', icon: 'ri-qr-code-line', category: 'Developer', component: QRCodeGenerator },
   { id: 'text-to-voice', name: 'Text to Voice', icon: 'ri-mic-line', category: 'Audio', component: TextToVoice },
-  { id: 'unit-converter', name: 'Unit Converter', icon: 'ri-ruler-2-line', category: 'Utility', component: UnitConverter }, // <-- NYA TOOL ADD HUA
+  { id: 'unit-converter', name: 'Unit Converter', icon: 'ri-ruler-2-line', category: 'Utility', component: UnitConverter },
   { id: 'word-to-pdf', name: 'Word to PDF', icon: 'ri-file-word-line', category: 'PDF', component: WordToPDF },
 ];
 
-const categories = ['All', 'PDF', 'Image', 'Text', 'Audio', 'Developer', 'Utility', 'Security', 'Health', 'Design', 'Game'];
+const categories = ['All', 'PDF', 'Image', 'Text', 'Audio', 'Developer', 'Finance', 'Utility', 'Security', 'Health', 'Design', 'Game']; // <-- NYI CATEGORY ADD HUI
 
 export default function ToolsPage() {
   // ... (rest of the code is the same)
@@ -169,4 +171,4 @@ export default function ToolsPage() {
       </div>
     </div>
   );
-            }
+   }
