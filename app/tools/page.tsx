@@ -30,7 +30,8 @@ import MarkdownPreviewer from './MarkdownPreviewer';
 import SignaturePad from './SignaturePad';
 import MemeGenerator from './MemeGenerator';
 import GradientGenerator from './GradientGenerator';
-import HashGenerator from './HashGenerator'; // <-- NYA IMPORT
+import HashGenerator from './HashGenerator';
+import DiscountCalculator from './DiscountCalculator'; // <-- NYA IMPORT
 
 const allTools = [
   { id: 'age-calculator', name: 'Age Calculator', icon: 'ri-calendar-2-line', category: 'Utility', component: AgeCalculator },
@@ -38,8 +39,9 @@ const allTools = [
   { id: 'calculator', name: 'Dynamic Calculator', icon: 'ri-calculator-line', category: 'Utility', component: Calculator },
   { id: 'case-converter', name: 'Case Converter', icon: 'ri-font-case', category: 'Text', component: CaseConverter },
   { id: 'color-picker', name: 'Color Picker', icon: 'ri-palette-line', category: 'Design', component: ColorPicker },
+  { id: 'discount-calculator', name: 'Discount Calculator', icon: 'ri-price-tag-3-line', category: 'Finance', component: DiscountCalculator }, // <-- NYA TOOL ADD HUA
   { id: 'gradient-generator', name: 'Gradient Generator', icon: 'ri-gradienter-line', category: 'Design', component: GradientGenerator },
-  { id: 'hash-generator', name: 'Hash Generator', icon: 'ri-fingerprint-2-line', category: 'Security', component: HashGenerator }, // <-- NYA TOOL ADD HUA
+  { id: 'hash-generator', name: 'Hash Generator', icon: 'ri-fingerprint-2-line', category: 'Security', component: HashGenerator },
   { id: 'image-compressor', name: 'Image Compressor', icon: 'ri-image-line', category: 'Image', component: ImageCompressor },
   { id: 'image-cropper', name: 'Image Cropper', icon: 'ri-crop-line', category: 'Image', component: ImageCropper },
   { id: 'image-framing', name: 'Image Framing', icon: 'ri-image-2-line', category: 'Image', component: ImageFraming },
@@ -186,4 +188,4 @@ export default function ToolsPage() {
       </div>
     </div>
   );
-    }
+              }
