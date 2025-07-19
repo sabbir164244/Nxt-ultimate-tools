@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+// ... (all previous imports)
 import PDFGenerator from './PDFGenerator';
 import WordToPDF from './WordToPDF';
 import TextToVoice from './TextToVoice';
@@ -24,7 +25,8 @@ import AgeCalculator from './AgeCalculator';
 import UnitConverter from './UnitConverter';
 import LoanCalculator from './LoanCalculator';
 import URLEncoderDecoder from './URLEncoderDecoder';
-import ImageToBase64 from './ImageToBase64'; // <-- NYA IMPORT
+import ImageToBase64 from './ImageToBase64';
+import MarkdownPreviewer from './MarkdownPreviewer'; // <-- NYA IMPORT
 
 const allTools = [
   { id: 'age-calculator', name: 'Age Calculator', icon: 'ri-calendar-2-line', category: 'Utility', component: AgeCalculator },
@@ -36,9 +38,10 @@ const allTools = [
   { id: 'image-cropper', name: 'Image Cropper', icon: 'ri-crop-line', category: 'Image', component: ImageCropper },
   { id: 'image-framing', name: 'Image Framing', icon: 'ri-image-2-line', category: 'Image', component: ImageFraming },
   { id: 'image-resizer', name: 'Image Resizer', icon: 'ri-scissors-line', category: 'Image', component: ImageResizer },
-  { id: 'image-to-base64', name: 'Image to Base64', icon: 'ri-image-edit-line', category: 'Developer', component: ImageToBase64 }, // <-- NYA TOOL ADD HUA
+  { id: 'image-to-base64', name: 'Image to Base64', icon: 'ri-image-edit-line', category: 'Developer', component: ImageToBase64 },
   { id: 'json-formatter', name: 'JSON Formatter', icon: 'ri-code-s-slash-line', category: 'Developer', component: JSONFormatter },
   { id: 'loan-calculator', name: 'Loan/EMI Calculator', icon: 'ri-bank-card-line', category: 'Finance', component: LoanCalculator },
+  { id: 'markdown-previewer', name: 'Markdown Previewer', icon: 'ri-markdown-line', category: 'Developer', component: MarkdownPreviewer }, // <-- NYA TOOL ADD HUA
   { id: 'notepad', name: 'Notepad', icon: 'ri-file-text-line', category: 'Utility', component: Notepad },
   { id: 'password-generator', name: 'Password Generator', icon: 'ri-lock-password-line', category: 'Security', component: PasswordGenerator },
   { id: 'pdf-generator', name: 'PDF Generator', icon: 'ri-file-pdf-line', category: 'PDF', component: PDFGenerator },
@@ -145,7 +148,7 @@ export default function ToolsPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl-grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredTools.map(tool => (
               <div
                 key={tool.id}
@@ -175,4 +178,4 @@ export default function ToolsPage() {
       </div>
     </div>
   );
-}
+   }
