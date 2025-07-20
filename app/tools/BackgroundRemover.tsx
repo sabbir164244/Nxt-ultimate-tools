@@ -1,4 +1,4 @@
-// app/tools/BackgroundRemover.tsx - IMPROVED ERROR HANDLING
+// app/tools/BackgroundRemover.tsx - LITE MODE FIX
 
 'use client';
 
@@ -19,10 +19,10 @@ export default function BackgroundRemover() {
       setProgress(0);
 
       try {
-        // Dynamically import the library
         const { removeBackground } = await import('@imgly/background-removal');
 
         const resultBlob = await removeBackground(file, {
+          mode: 'fast', // <-- YEH HAI LITE MODE
           onProgress: (p, t) => {
             const percentage = Math.round((p / t) * 100);
             setProgress(percentage);
