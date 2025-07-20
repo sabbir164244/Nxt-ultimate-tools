@@ -1,17 +1,10 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Particles from "react-tsparticles";
-import { loadSlim } from "tsparticles-slim";
-import particlesConfig from '../../particles-config.js';
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
-  
-  const particlesInit = useCallback(async (engine: any) => {
-    await loadSlim(engine);
-  }, []);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -34,12 +27,21 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-black relative overflow-hidden">
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        options={particlesConfig as any}
-        className="absolute inset-0 z-0"
-      />
+      {/* Simple, Safe, and Beautiful Pulse Animation */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(50)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-2 h-2 bg-blue-400/30 rounded-full animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${2 + Math.random() * 3}s`
+            }}
+          />
+        ))}
+      </div>
 
       <div className="relative z-10">
         {/* Header */}
@@ -83,7 +85,6 @@ export default function Home() {
           </div>
         </section>
         
-        {/* ====== AD CODE KI NAYI JAGAH YAHAN HAI ====== */}
         <div
           className="flex justify-center my-4"
           dangerouslySetInnerHTML={{
@@ -101,9 +102,7 @@ export default function Home() {
             `,
           }}
         />
-        {/* ============================================= */}
 
-        {/* Featured Tools Preview */}
         <section id="tools" className="py-20 px-6">
             <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
@@ -137,7 +136,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Features Section */}
         <section id="features" className="py-20 px-6 bg-black/20">
         <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
@@ -165,7 +163,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FAQ Section */}
         <section id="faq" className="py-20 px-6">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
@@ -191,7 +188,6 @@ export default function Home() {
           </div>
         </section>
         
-        {/* ====== FOOTER AD CODE YAHAN HAI ====== */}
         <div
           className="flex justify-center my-4"
           dangerouslySetInnerHTML={{
@@ -202,7 +198,6 @@ export default function Home() {
           }}
         />
         
-        {/* Footer */}
         <footer className="py-12 px-6 bg-black/30 border-t border-white/10">
           <div className="max-w-7xl mx-auto text-center">
             <div className="flex items-center justify-center space-x-3 mb-6">
@@ -223,4 +218,4 @@ export default function Home() {
       </div>
     </div>
   );
-                 }
+                  }
