@@ -4,7 +4,8 @@ import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
-import particlesConfig from '../../particles-config';
+// --- YEH RAHA SAHI ADDRESS ---
+import particlesConfig from '../../particles-config.js';
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -60,6 +61,25 @@ export default function Home() {
           </div>
         </header>
 
+        {/* ====== HEADER AD CODE YAHAN HAI ====== */}
+        <div
+          className="flex justify-center my-4"
+          dangerouslySetInnerHTML={{
+            __html: `
+              <script type="text/javascript">
+                  atOptions = {
+                      'key' : 'cb2be0a2984ea6df52ff2a61089fbce3',
+                      'format' : 'iframe',
+                      'height' : 90,
+                      'width' : 728,
+                      'params' : {}
+                  };
+              </script>
+              <script type="text/javascript" src="//nastylayer.com/cb2be0a2984ea6df52ff2a61089fbce3/invoke.js"></script>
+            `,
+          }}
+        />
+        
         {/* Hero Section */}
         <section id="home" className="pt-20 pb-16 px-6">
           <div className="max-w-6xl mx-auto text-center">
@@ -82,26 +102,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        {/* ====== AD CODE KI NAYI JAGAH YAHAN HAI ====== */}
-        <div
-          className="flex justify-center my-4"
-          dangerouslySetInnerHTML={{
-            __html: `
-              <script type="text/javascript">
-                  atOptions = {
-                      'key' : 'cb2be0a2984ea6df52ff2a61089fbce3',
-                      'format' : 'iframe',
-                      'height' : 90,
-                      'width' : 728,
-                      'params' : {}
-                  };
-              </script>
-              <script type="text/javascript" src="//nastylayer.com/cb2be0a2984ea6df52ff2a61089fbce3/invoke.js"></script>
-            `,
-          }}
-        />
-        {/* ============================================= */}
 
         {/* Featured Tools Preview */}
         <section id="tools" className="py-20 px-6">
@@ -192,15 +192,7 @@ export default function Home() {
         </section>
         
         {/* ====== FOOTER AD CODE YAHAN HAI ====== */}
-        <div
-          className="flex justify-center my-4"
-          dangerouslySetInnerHTML={{
-            __html: `
-              <script async="async" data-cfasync="false" src="//nastylayer.com/5d3cff5e304628342af2358707fdbedb/invoke.js"></script>
-              <div id="container-5d3cff5e304628342af2358707fdbedb"></div>
-            `,
-          }}
-        />
+        <div className="flex justify-center my-4" dangerouslySetInnerHTML={{ __html: `<script async="async" data-cfasync="false" src="//nastylayer.com/5d3cff5e304628342af2358707fdbedb/invoke.js"></script><div id="container-5d3cff5e304628342af2358707fdbedb"></div>`}}/>
         
         {/* Footer */}
         <footer className="py-12 px-6 bg-black/30 border-t border-white/10">
@@ -223,4 +215,4 @@ export default function Home() {
       </div>
     </div>
   );
-          }
+}
