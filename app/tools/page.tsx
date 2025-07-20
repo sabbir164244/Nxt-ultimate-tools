@@ -31,13 +31,9 @@ import MemeGenerator from './MemeGenerator';
 import GradientGenerator from './GradientGenerator';
 import HashGenerator from './HashGenerator';
 import DiscountCalculator from './DiscountCalculator';
-import ImageCaptionGenerator from './ImageCaptionGenerator';
-import BackgroundRemover from './BackgroundRemover';
 
 const allTools = [
   { id: 'age-calculator', name: 'Age Calculator', icon: 'ri-calendar-2-line', category: 'Utility', component: AgeCalculator },
-  { id: 'ai-background-remover', name: 'AI Background Remover', icon: 'ri-magic-line', category: 'AI', component: BackgroundRemover },
-  { id: 'ai-image-caption', name: 'AI Image Caption', icon: 'ri-robot-2-line', category: 'AI', component: ImageCaptionGenerator },
   { id: 'bmi-calculator', name: 'BMI Calculator', icon: 'ri-heart-pulse-line', category: 'Health', component: BMICalculator },
   { id: 'calculator', name: 'Dynamic Calculator', icon: 'ri-calculator-line', category: 'Utility', component: Calculator },
   { id: 'case-converter', name: 'Case Converter', icon: 'ri-font-case', category: 'Text', component: CaseConverter },
@@ -68,20 +64,14 @@ const allTools = [
   { id: 'word-to-pdf', name: 'Word to PDF', icon: 'ri-file-word-line', category: 'PDF', component: WordToPDF },
 ];
 
-const categories = ['All', 'AI', 'PDF', 'Image', 'Text', 'Audio', 'Developer', 'Finance', 'Utility', 'Security', 'Health', 'Design', 'Game', 'Fun'];
+const categories = ['All', 'PDF', 'Image', 'Text', 'Audio', 'Developer', 'Finance', 'Utility', 'Security', 'Health', 'Design', 'Game', 'Fun'];
 
 export default function ToolsPage() {
   const [selectedTool, setSelectedTool] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredTools = allTools.sort((a,b) => {
-    const aIsAI = a.category === 'AI';
-    const bIsAI = b.category === 'AI';
-    if (aIsAI && !bIsAI) return -1;
-    if (!aIsAI && bIsAI) return 1;
-    return a.name.localeCompare(b.name);
-  }).filter(tool => {
+  const filteredTools = allTools.sort((a,b) => a.name.localeCompare(b.name)).filter(tool => {
     const matchesCategory = selectedCategory === 'All' || tool.category === selectedCategory;
     const matchesSearch = tool.name.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
@@ -171,17 +161,8 @@ export default function ToolsPage() {
               <div
                 key={tool.id}
                 onClick={() => setSelectedTool(tool)}
-                className={`bg-white/10 backdrop-blur-lg rounded-xl p-6 border transition-all duration-300 transform hover:scale-105 cursor-pointer group relative overflow-hidden ${
-                    tool.category === 'AI' 
-                    ? 'border-fuchsia-500/50 hover:border-fuchsia-400' 
-                    : 'border-white/20 hover:bg-white/15'
-                }`}
+                className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:scale-105 cursor-pointer group"
               >
-                {tool.category === 'AI' && (
-                  <div className="absolute top-0 right-0 px-3 py-1 bg-gradient-to-r from-purple-500 to-red-500 text-white text-xs font-bold rounded-bl-lg">
-                    ✨ AI MAGIC
-                  </div>
-                )}
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   <i className={`${tool.icon} text-white text-xl`}></i>
                 </div>
@@ -205,4 +186,4 @@ export default function ToolsPage() {
       </div>
     </div>
   );
-                }
+          }
