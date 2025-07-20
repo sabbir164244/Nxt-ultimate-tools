@@ -34,14 +34,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-black relative overflow-hidden">
-      {/* --- YEH HAI FERRARI ENGINE WALA BACKGROUND --- */}
       <Particles
         id="tsparticles"
         init={particlesInit}
         options={particlesConfig as any}
         className="absolute inset-0 z-0"
       />
-      {/* --- JAADU KHATAM --- */}
 
       <div className="relative z-10">
         {/* Header */}
@@ -62,25 +60,6 @@ export default function Home() {
           </div>
         </header>
 
-        {/* ====== HEADER AD CODE YAHAN HAI ====== */}
-        <div
-          className="flex justify-center my-4"
-          dangerouslySetInnerHTML={{
-            __html: `
-              <script type="text/javascript">
-                  atOptions = {
-                      'key' : 'cb2be0a2984ea6df52ff2a61089fbce3',
-                      'format' : 'iframe',
-                      'height' : 90,
-                      'width' : 728,
-                      'params' : {}
-                  };
-              </script>
-              <script type="text/javascript" src="//nastylayer.com/cb2be0a2984ea6df52ff2a61089fbce3/invoke.js"></script>
-            `,
-          }}
-        />
-        
         {/* Hero Section */}
         <section id="home" className="pt-20 pb-16 px-6">
           <div className="max-w-6xl mx-auto text-center">
@@ -103,6 +82,26 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* ====== AD CODE KI NAYI JAGAH YAHAN HAI ====== */}
+        <div
+          className="flex justify-center my-4"
+          dangerouslySetInnerHTML={{
+            __html: `
+              <script type="text/javascript">
+                  atOptions = {
+                      'key' : 'cb2be0a2984ea6df52ff2a61089fbce3',
+                      'format' : 'iframe',
+                      'height' : 90,
+                      'width' : 728,
+                      'params' : {}
+                  };
+              </script>
+              <script type="text/javascript" src="//nastylayer.com/cb2be0a2984ea6df52ff2a61089fbce3/invoke.js"></script>
+            `,
+          }}
+        />
+        {/* ============================================= */}
 
         {/* Featured Tools Preview */}
         <section id="tools" className="py-20 px-6">
@@ -224,4 +223,4 @@ export default function Home() {
       </div>
     </div>
   );
-                 }
+          }
