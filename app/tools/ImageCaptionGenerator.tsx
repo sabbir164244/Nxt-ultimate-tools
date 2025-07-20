@@ -1,4 +1,4 @@
-// app/tools/ImageCaptionGenerator.tsx - DIRECT ACTION FIX
+// app/tools/ImageCaptionGenerator.tsx - LITE MODEL FIX
 
 'use client';
 
@@ -15,12 +15,12 @@ export default function ImageCaptionGenerator() {
     if (!imageUrl) return;
 
     try {
-      // Dynamically import the pipeline
       const { pipeline } = await import('@xenova/transformers');
     
       if (!captioner.current) {
         setStatus('Loading AI model... (this may take a moment)');
-        captioner.current = await pipeline('image-to-text', 'Xenova/vit-gpt2-image-captioning');
+        // Using a smaller, faster model
+        captioner.current = await pipeline('image-to-text', 'Xenova/vit-base-patch16-224-in21k');
       }
 
       setStatus('AI Model Ready. Generating caption...');
@@ -29,9 +29,9 @@ export default function ImageCaptionGenerator() {
       setCaption(result[0].generated_text);
       setStatus('Caption generated successfully!');
 
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      setStatus('An unexpected error occurred. Please try again.');
+      setStatus(`An unexpected error occurred: ${error.message}. Please try again.`);
     }
   }, []);
 
