@@ -1,9 +1,8 @@
-// app/tools/BackgroundRemover.tsx
+// app/tools/BackgroundRemover.tsx - IMPROVED ERROR HANDLING
 
 'use client';
 
 import { useState } from 'react';
-import { removeBackground } from '@imgly/background-removal';
 
 export default function BackgroundRemover() {
   const [originalImage, setOriginalImage] = useState<string | null>(null);
@@ -16,10 +15,13 @@ export default function BackgroundRemover() {
       const file = e.target.files[0];
       setOriginalImage(URL.createObjectURL(file));
       setResultImage(null);
-      setStatus('Processing... This might take a moment.');
+      setStatus('Initializing AI model...');
       setProgress(0);
 
       try {
+        // Dynamically import the library
+        const { removeBackground } = await import('@imgly/background-removal');
+
         const resultBlob = await removeBackground(file, {
           onProgress: (p, t) => {
             const percentage = Math.round((p / t) * 100);
@@ -29,8 +31,8 @@ export default function BackgroundRemover() {
         });
         setResultImage(URL.createObjectURL(resultBlob));
         setStatus('Background removed successfully!');
-      } catch (error) {
-        setStatus('Error processing image. Please try another one.');
+      } catch (error: any) {
+        setStatus(`Error: ${error.message}. Please try again.`);
         console.error(error);
       }
     }
@@ -75,7 +77,7 @@ export default function BackgroundRemover() {
                     <h3 className="text-lg font-semibold text-white mb-2 text-center">Result (Background Removed)</h3>
                     {resultImage && (
                         <div>
-                            <img src={resultImage} alt="Background removed" className="rounded-lg w-full bg-grid-pattern" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'20\' height=\'20\' viewBox=\'0 0 20 20\'%3E%3Crect width=\'10\' height=\'10\' fill=\'%234a5568\'/%3E%3Crect x=\'10\' y=\'10\' width=\'10\' height=\'10\' fill=\'%234a5568\'/%3E%3Crect width=\'10\' height=\'10\' y=\'10\' fill=\'%232d3748\'/%3E%3Crect x=\'10\' width=\'10\' height=\'10\' fill=\'%232d3748\'/%3E%3C/svg%3E")' }} />
+                            <img src={resultImage} alt="Background removed" className="rounded-lg w-full" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'20\' height=\'20\' viewBox=\'0 0 20 20\'%3E%3Crect width=\'10\' height=\'10\' fill=\'%234a5568\'/%3E%3Crect x=\'10\' y=\'10\' width=\'10\' height=\'10\' fill=\'%234a5568\'/%3E%3Crect width=\'10\' height=\'10\' y=\'10\' fill=\'%232d3748\'/%3E%3Crect x=\'10\' width=\'10\' height=\'10\' fill=\'%232d3748\'/%3E%3C/svg%3E")' }} />
                             <a href={resultImage} download="background-removed.png" className="mt-4 block w-full text-center bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors">
                                <i className="ri-download-2-line mr-2"></i> Download Result
                             </a>
@@ -88,4 +90,4 @@ export default function BackgroundRemover() {
       </div>
     </div>
   );
-      }
+}
