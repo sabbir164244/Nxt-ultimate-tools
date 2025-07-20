@@ -1,5 +1,3 @@
-// app/page.tsx - Final Code with Ads
-
 'use client';
 
 import { useState, useEffect } from 'react';
