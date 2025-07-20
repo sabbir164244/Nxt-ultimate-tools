@@ -27,20 +27,26 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-black relative overflow-hidden">
-      {/* Simple, Safe, and Beautiful Pulse Animation */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(50)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 bg-blue-400/30 rounded-full animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 3}s`
-            }}
-          />
-        ))}
+      {/* --- YEH HAI NAYA, GUARANTEED ANIMATION --- */}
+      <div className="absolute inset-0 z-0">
+        {[...Array(15)].map((_, i) => {
+          const size = Math.random() * 80 + 20; // 20px to 100px
+          const duration = Math.random() * 10 + 10; // 10s to 20s
+          return (
+            <div
+              key={i}
+              className="absolute rounded-full bg-indigo-500/10 animate-float"
+              style={{
+                width: `${size}px`,
+                height: `${size}px`,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDuration: `${duration}s`,
+                animationDelay: `${Math.random() * -10}s`,
+              }}
+            />
+          );
+        })}
       </div>
 
       <div className="relative z-10">
@@ -218,4 +224,4 @@ export default function Home() {
       </div>
     </div>
   );
-                  }
+            }
