@@ -1,42 +1,40 @@
-// app/tools/ImageCaptionGenerator.tsx
+// app/tools/ImageCaptionGenerator.tsx - DIRECT ACTION FIX
 
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 
 export default function ImageCaptionGenerator() {
   const [image, setImage] = useState<string | null>(null);
   const [caption, setCaption] = useState<string>('');
   const [status, setStatus] = useState<string>('Ready. Upload an image to start.');
   
-  const workerRef = useRef<Worker | null>(null);
+  const captioner = useRef<any>(null);
 
-  useEffect(() => {
-    workerRef.current = new Worker(new URL('../workers/image-caption-worker.js', import.meta.url));
+  const generateCaption = useCallback(async (imageUrl: string) => {
+    if (!imageUrl) return;
+
+    try {
+      // Dynamically import the pipeline
+      const { pipeline } = await import('@xenova/transformers');
     
-    const onMessageReceived = (e: MessageEvent) => {
-      switch (e.data.status) {
-        case 'loading':
-          setStatus(`Loading model... ${(e.data.progress * 100).toFixed(2)}%`);
-          break;
-        case 'ready':
-          setStatus('AI Model Ready. Generating caption...');
-          break;
-        case 'complete':
-          setCaption(e.data.output[0].generated_text);
-          setStatus('Caption generated successfully!');
-          break;
-        default:
-          setStatus('An unexpected error occurred.');
-          break;
+      if (!captioner.current) {
+        setStatus('Loading AI model... (this may take a moment)');
+        captioner.current = await pipeline('image-to-text', 'Xenova/vit-gpt2-image-captioning');
       }
-    };
 
-    workerRef.current.addEventListener('message', onMessageReceived);
+      setStatus('AI Model Ready. Generating caption...');
+      const result = await captioner.current(imageUrl);
+      
+      setCaption(result[0].generated_text);
+      setStatus('Caption generated successfully!');
 
-    return () => workerRef.current?.removeEventListener('message', onMessageReceived);
+    } catch (error) {
+      console.error(error);
+      setStatus('An unexpected error occurred. Please try again.');
+    }
   }, []);
-  
+
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const reader = new FileReader();
@@ -45,7 +43,7 @@ export default function ImageCaptionGenerator() {
         setImage(imageUrl);
         setCaption('');
         setStatus('Image loaded. Sending to AI...');
-        workerRef.current?.postMessage({ image: imageUrl });
+        generateCaption(imageUrl);
       };
       reader.readAsDataURL(e.target.files[0]);
     }
@@ -102,4 +100,4 @@ export default function ImageCaptionGenerator() {
       </div>
     </div>
   );
-                                       }
+}
