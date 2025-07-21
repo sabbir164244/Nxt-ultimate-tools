@@ -2,48 +2,66 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import dynamic from 'next/dynamic'; // Yeh Next.js ki special power hai performance ke liye
+import PDFGenerator from './PDFGenerator';
+import WordToPDF from './WordToPDF';
+import TextToVoice from './TextToVoice';
+import ImageCompressor from './ImageCompressor';
+import ImageResizer from './ImageResizer';
+import ImageCropper from './ImageCropper';
+import PDFSplitter from './PDFSplitter';
+import PDFMerger from './PDFMerger';
+import ImageFraming from './ImageFraming';
+import Calculator from './Calculator';
+import PasswordGenerator from './PasswordGenerator';
+import BMICalculator from './BMICalculator';
+import Notepad from './Notepad';
+import ColorPicker from './ColorPicker';
+import Puzzle from './Puzzle';
+import CaseConverter from './CaseConverter';
+import QRCodeGenerator from './QRCodeGenerator';
+import JSONFormatter from './JSONFormatter';
+import AgeCalculator from './AgeCalculator';
+import UnitConverter from './UnitConverter';
+import LoanCalculator from './LoanCalculator';
+import URLEncoderDecoder from './URLEncoderDecoder';
+import ImageToBase64 from './ImageToBase64';
+import MarkdownPreviewer from './MarkdownPreviewer';
+import SignaturePad from './SignaturePad';
+import MemeGenerator from './MemeGenerator';
+import GradientGenerator from './GradientGenerator';
+import HashGenerator from './HashGenerator';
+import DiscountCalculator from './DiscountCalculator';
 
-// Yeh ek loading animation hai jo tool load hote samay dikhega
-const ToolLoading = () => (
-  <div className="flex flex-col justify-center items-center h-screen text-white">
-    <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-purple-400"></div>
-    <p className="mt-4 text-lg">Loading Tool...</p>
-  </div>
-);
-
-// Har component ko "dynamic" tarike se import kiya gaya hai
-// Taki woh build time par nahi, balki click karne par load ho
 const allTools = [
-  { id: 'age-calculator', name: 'Age Calculator', icon: 'ri-calendar-2-line', category: 'Utility', component: dynamic(() => import('./AgeCalculator'), { loading: () => <ToolLoading /> }) },
-  { id: 'bmi-calculator', name: 'BMI Calculator', icon: 'ri-heart-pulse-line', category: 'Health', component: dynamic(() => import('./BMICalculator'), { loading: () => <ToolLoading /> }) },
-  { id: 'calculator', name: 'Dynamic Calculator', icon: 'ri-calculator-line', category: 'Utility', component: dynamic(() => import('./Calculator'), { loading: () => <ToolLoading /> }) },
-  { id: 'case-converter', name: 'Case Converter', icon: 'ri-font-case', category: 'Text', component: dynamic(() => import('./CaseConverter'), { loading: () => <ToolLoading /> }) },
-  { id: 'color-picker', name: 'Color Picker', icon: 'ri-palette-line', category: 'Design', component: dynamic(() => import('./ColorPicker'), { loading: () => <ToolLoading /> }) },
-  { id: 'discount-calculator', name: 'Discount Calculator', icon: 'ri-price-tag-3-line', category: 'Finance', component: dynamic(() => import('./DiscountCalculator'), { loading: () => <ToolLoading /> }) },
-  { id: 'gradient-generator', name: 'Gradient Generator', icon: 'ri-gradienter-line', category: 'Design', component: dynamic(() => import('./GradientGenerator'), { loading: () => <ToolLoading /> }) },
-  { id: 'hash-generator', name: 'Hash Generator', icon: 'ri-fingerprint-2-line', category: 'Security', component: dynamic(() => import('./HashGenerator'), { loading: () => <ToolLoading /> }) },
-  { id: 'image-compressor', name: 'Image Compressor', icon: 'ri-image-line', category: 'Image', component: dynamic(() => import('./ImageCompressor'), { loading: () => <ToolLoading /> }) },
-  { id: 'image-cropper', name: 'Image Cropper', icon: 'ri-crop-line', category: 'Image', component: dynamic(() => import('./ImageCropper'), { loading: () => <ToolLoading /> }) },
-  { id: 'image-framing', name: 'Image Framing', icon: 'ri-image-2-line', category: 'Image', component: dynamic(() => import('./ImageFraming'), { loading: () => <ToolLoading /> }) },
-  { id: 'image-resizer', name: 'Image Resizer', icon: 'ri-scissors-line', category: 'Image', component: dynamic(() => import('./ImageResizer'), { loading: () => <ToolLoading /> }) },
-  { id: 'image-to-base64', name: 'Image to Base64', icon: 'ri-image-edit-line', category: 'Developer', component: dynamic(() => import('./ImageToBase64'), { loading: () => <ToolLoading /> }) },
-  { id: 'json-formatter', name: 'JSON Formatter', icon: 'ri-code-s-slash-line', category: 'Developer', component: dynamic(() => import('./JSONFormatter'), { loading: () => <ToolLoading /> }) },
-  { id: 'loan-calculator', name: 'Loan/EMI Calculator', icon: 'ri-bank-card-line', category: 'Finance', component: dynamic(() => import('./LoanCalculator'), { loading: () => <ToolLoading /> }) },
-  { id: 'markdown-previewer', name: 'Markdown Previewer', icon: 'ri-markdown-line', category: 'Developer', component: dynamic(() => import('./MarkdownPreviewer'), { loading: () => <ToolLoading /> }) },
-  { id: 'meme-generator', name: 'Meme Generator', icon: 'ri-emotion-laugh-line', category: 'Fun', component: dynamic(() => import('./MemeGenerator'), { loading: () => <ToolLoading /> }) },
-  { id: 'notepad', name: 'Notepad', icon: 'ri-file-text-line', category: 'Utility', component: dynamic(() => import('./Notepad'), { loading: () => <ToolLoading /> }) },
-  { id: 'password-generator', name: 'Password Generator', icon: 'ri-lock-password-line', category: 'Security', component: dynamic(() => import('./PasswordGenerator'), { loading: () => <ToolLoading /> }) },
-  { id: 'pdf-generator', name: 'PDF Generator', icon: 'ri-file-pdf-line', category: 'PDF', component: dynamic(() => import('./PDFGenerator'), { loading: () => <ToolLoading /> }) },
-  { id: 'pdf-merger', name: 'PDF Merger', icon: 'ri-file-copy-line', category: 'PDF', component: dynamic(() => import('./PDFMerger'), { loading: () => <ToolLoading /> }) },
-  { id: 'pdf-splitter', name: 'PDF Splitter', icon: 'ri-file-reduce-line', category: 'PDF', component: dynamic(() => import('./PDFSplitter'), { loading: () => <ToolLoading /> }) },
-  { id: 'puzzle', name: 'Puzzle Game', icon: 'ri-puzzle-line', category: 'Game', component: dynamic(() => import('./Puzzle'), { loading: () => <ToolLoading /> }) },
-  { id: 'qr-code-generator', name: 'QR Code Generator', icon: 'ri-qr-code-line', category: 'Developer', component: dynamic(() => import('./QRCodeGenerator'), { loading: () => <ToolLoading /> }) },
-  { id: 'signature-pad', name: 'Signature Pad', icon: 'ri-pencil-ruler-2-line', category: 'Utility', component: dynamic(() => import('./SignaturePad'), { loading: () => <ToolLoading /> }) },
-  { id: 'text-to-voice', name: 'Text to Voice', icon: 'ri-mic-line', category: 'Audio', component: dynamic(() => import('./TextToVoice'), { loading: () => <ToolLoading /> }) },
-  { id: 'unit-converter', name: 'Unit Converter', icon: 'ri-ruler-2-line', category: 'Utility', component: dynamic(() => import('./UnitConverter'), { loading: () => <ToolLoading /> }) },
-  { id: 'url-encoder-decoder', name: 'URL Encoder/Decoder', icon: 'ri-link', category: 'Developer', component: dynamic(() => import('./URLEncoderDecoder'), { loading: () => <ToolLoading /> }) },
-  { id: 'word-to-pdf', name: 'Word to PDF', icon: 'ri-file-word-line', category: 'PDF', component: dynamic(() => import('./WordToPDF'), { loading: () => <ToolLoading /> }) },
+  { id: 'age-calculator', name: 'Age Calculator', icon: 'ri-calendar-2-line', category: 'Utility', component: AgeCalculator },
+  { id: 'bmi-calculator', name: 'BMI Calculator', icon: 'ri-heart-pulse-line', category: 'Health', component: BMICalculator },
+  { id: 'calculator', name: 'Dynamic Calculator', icon: 'ri-calculator-line', category: 'Utility', component: Calculator },
+  { id: 'case-converter', name: 'Case Converter', icon: 'ri-font-case', category: 'Text', component: CaseConverter },
+  { id: 'color-picker', name: 'Color Picker', icon: 'ri-palette-line', category: 'Design', component: ColorPicker },
+  { id: 'discount-calculator', name: 'Discount Calculator', icon: 'ri-price-tag-3-line', category: 'Finance', component: DiscountCalculator },
+  { id: 'gradient-generator', name: 'Gradient Generator', icon: 'ri-gradienter-line', category: 'Design', component: GradientGenerator },
+  { id: 'hash-generator', name: 'Hash Generator', icon: 'ri-fingerprint-2-line', category: 'Security', component: HashGenerator },
+  { id: 'image-compressor', name: 'Image Compressor', icon: 'ri-image-line', category: 'Image', component: ImageCompressor },
+  { id: 'image-cropper', name: 'Image Cropper', icon: 'ri-crop-line', category: 'Image', component: ImageCropper },
+  { id: 'image-framing', name: 'Image Framing', icon: 'ri-image-2-line', category: 'Image', component: ImageFraming },
+  { id: 'image-resizer', name: 'Image Resizer', icon: 'ri-scissors-line', category: 'Image', component: ImageResizer },
+  { id: 'image-to-base64', name: 'Image to Base64', icon: 'ri-image-edit-line', category: 'Developer', component: ImageToBase64 },
+  { id: 'json-formatter', name: 'JSON Formatter', icon: 'ri-code-s-slash-line', category: 'Developer', component: JSONFormatter },
+  { id: 'loan-calculator', name: 'Loan/EMI Calculator', icon: 'ri-bank-card-line', category: 'Finance', component: LoanCalculator },
+  { id: 'markdown-previewer', name: 'Markdown Previewer', icon: 'ri-markdown-line', category: 'Developer', component: MarkdownPreviewer },
+  { id: 'meme-generator', name: 'Meme Generator', icon: 'ri-emotion-laugh-line', category: 'Fun', component: MemeGenerator },
+  { id: 'notepad', name: 'Notepad', icon: 'ri-file-text-line', category: 'Utility', component: Notepad },
+  { id: 'password-generator', name: 'Password Generator', icon: 'ri-lock-password-line', category: 'Security', component: PasswordGenerator },
+  { id: 'pdf-generator', name: 'PDF Generator', icon: 'ri-file-pdf-line', category: 'PDF', component: PDFGenerator },
+  { id: 'pdf-merger', name: 'PDF Merger', icon: 'ri-file-copy-line', category: 'PDF', component: PDFMerger },
+  { id: 'pdf-splitter', name: 'PDF Splitter', icon: 'ri-file-reduce-line', category: 'PDF', component: PDFSplitter },
+  { id: 'puzzle', name: 'Puzzle Game', icon: 'ri-puzzle-line', category: 'Game', component: Puzzle },
+  { id: 'qr-code-generator', name: 'QR Code Generator', icon: 'ri-qr-code-line', category: 'Developer', component: QRCodeGenerator },
+  { id: 'signature-pad', name: 'Signature Pad', icon: 'ri-pencil-ruler-2-line', category: 'Utility', component: SignaturePad },
+  { id: 'text-to-voice', name: 'Text to Voice', icon: 'ri-mic-line', category: 'Audio', component: TextToVoice },
+  { id: 'unit-converter', name: 'Unit Converter', icon: 'ri-ruler-2-line', category: 'Utility', component: UnitConverter },
+  { id: 'url-encoder-decoder', name: 'URL Encoder/Decoder', icon: 'ri-link', category: 'Developer', component: URLEncoderDecoder },
+  { id: 'word-to-pdf', name: 'Word to PDF', icon: 'ri-file-word-line', category: 'PDF', component: WordToPDF },
 ];
 
 const categories = ['All', 'PDF', 'Image', 'Text', 'Audio', 'Developer', 'Finance', 'Utility', 'Security', 'Health', 'Design', 'Game', 'Fun'];
@@ -63,7 +81,7 @@ export default function ToolsPage() {
     const ToolComponent = selectedTool.component;
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-        <header className="p-6 bg-black/20 backdrop-blur-lg border-b border-white/10 sticky top-0 z-20">
+        <header className="p-6 bg-black/20 backdrop-blur-lg border-b border-white/10">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
@@ -91,7 +109,7 @@ export default function ToolsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      <header className="p-6 bg-black/20 backdrop-blur-lg border-b border-white/10 sticky top-0 z-20">
+      <header className="p-6 bg-black/20 backdrop-blur-lg border-b border-white/10">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
@@ -113,7 +131,7 @@ export default function ToolsPage() {
                 <i className="ri-search-line absolute left-4 top-1/2 transform -translate-y-1/2 text-white/50 text-lg"></i>
                 <input
                   type="text"
-                  placeholder="Search for a tool..."
+                  placeholder="Search tools..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full pl-12 pr-4 py-3 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
@@ -128,7 +146,7 @@ export default function ToolsPage() {
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap cursor-pointer ${
                     selectedCategory === category
-                      ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
+                      ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
                       : 'bg-white/10 text-white/80 hover:bg-white/20'
                   }`}
                 >
@@ -143,7 +161,7 @@ export default function ToolsPage() {
               <div
                 key={tool.id}
                 onClick={() => setSelectedTool(tool)}
-                className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group"
+                className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:scale-105 cursor-pointer group"
               >
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   <i className={`${tool.icon} text-white text-xl`}></i>
@@ -159,9 +177,9 @@ export default function ToolsPage() {
 
           {filteredTools.length === 0 && (
             <div className="text-center py-12">
-              <i className="ri-search-eye-line text-white/30 text-6xl mb-4"></i>
-              <h3 className="text-xl font-bold text-white mb-2">No Tools Found</h3>
-              <p className="text-white/70">Try adjusting your search or category filter.</p>
+              <i className="ri-search-line text-white/30 text-6xl mb-4"></i>
+              <h3 className="text-xl font-bold text-white mb-2">No tools found</h3>
+              <p className="text-white/70">Try adjusting your search or category filter</p>
             </div>
           )}
         </div>
