@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Pacifico } from "next/font/google";
+// Sahi Imports: Pacifico Google se aur Geist apne package se
+import { Pacifico } from "next/font/google";
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 import "./globals.css";
 
 const pacifico = Pacifico({
@@ -7,16 +10,15 @@ const pacifico = Pacifico({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-pacifico',
-})
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
+// Sahi tareeke se Geist fonts ko initialize kiya gaya hai
+const geistSans = GeistSans({
+  variable: "--font-geist-sans",
+});
+
+const geistMono = GeistMono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -109,4 +111,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-        }
+}
