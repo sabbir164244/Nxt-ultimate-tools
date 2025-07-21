@@ -26,27 +26,21 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-black relative overflow-hidden">
-      {/* --- YEH HAI NAYA, GUARANTEED ANIMATION --- */}
-      <div className="absolute inset-0 z-0">
-        {[...Array(15)].map((_, i) => {
-          const size = Math.random() * 80 + 20; // 20px to 100px
-          const duration = Math.random() * 10 + 10; // 10s to 20s
-          return (
-            <div
-              key={i}
-              className="absolute rounded-full bg-indigo-500/10 animate-float"
-              style={{
-                width: `${size}px`,
-                height: `${size}px`,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDuration: `${duration}s`,
-                animationDelay: `${Math.random() * -10}s`,
-              }}
-            />
-          );
-        })}
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
+      {/* Simple, Safe, and Beautiful Pulse Animation */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(50)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-2 h-2 bg-blue-400/30 rounded-full animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${2 + Math.random() * 3}s`
+            }}
+          />
+        ))}
       </div>
 
       <div className="relative z-10">
@@ -67,6 +61,26 @@ export default function Home() {
             </nav>
           </div>
         </header>
+
+        {/* ====== HEADER AD CODE YAHAN HAI ====== */}
+        <div
+          className="flex justify-center my-4"
+          dangerouslySetInnerHTML={{
+            __html: `
+              <script type="text/javascript">
+                  atOptions = {
+                      'key' : 'cb2be0a2984ea6df52ff2a61089fbce3',
+                      'format' : 'iframe',
+                      'height' : 90,
+                      'width' : 728,
+                      'params' : {}
+                  };
+              </script>
+              <script type="text/javascript" src="//nastylayer.com/cb2be0a2984ea6df52ff2a61089fbce3/invoke.js"></script>
+            `,
+          }}
+        />
+        {/* ======================================= */}
 
         {/* Hero Section */}
         <section id="home" className="pt-20 pb-16 px-6">
@@ -90,25 +104,8 @@ export default function Home() {
             </div>
           </div>
         </section>
-        
-        <div
-          className="flex justify-center my-4"
-          dangerouslySetInnerHTML={{
-            __html: `
-              <script type="text/javascript">
-                  atOptions = {
-                      'key' : 'cb2be0a2984ea6df52ff2a61089fbce3',
-                      'format' : 'iframe',
-                      'height' : 90,
-                      'width' : 728,
-                      'params' : {}
-                  };
-              </script>
-              <script type="text/javascript" src="//nastylayer.com/cb2be0a2984ea6df52ff2a61089fbce3/invoke.js"></script>
-            `,
-          }}
-        />
 
+        {/* Featured Tools Preview */}
         <section id="tools" className="py-20 px-6">
             <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
@@ -142,6 +139,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Features Section */}
         <section id="features" className="py-20 px-6 bg-black/20">
         <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
@@ -169,6 +167,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* FAQ Section */}
         <section id="faq" className="py-20 px-6">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
@@ -194,6 +193,7 @@ export default function Home() {
           </div>
         </section>
         
+        {/* ====== FOOTER AD CODE YAHAN HAI ====== */}
         <div
           className="flex justify-center my-4"
           dangerouslySetInnerHTML={{
@@ -204,6 +204,7 @@ export default function Home() {
           }}
         />
         
+        {/* Footer */}
         <footer className="py-12 px-6 bg-black/30 border-t border-white/10">
           <div className="max-w-7xl mx-auto text-center">
             <div className="flex items-center justify-center space-x-3 mb-6">
@@ -224,4 +225,4 @@ export default function Home() {
       </div>
     </div>
   );
-            }
+              }
