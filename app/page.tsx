@@ -45,42 +45,44 @@ export default function Home() {
 
       <div className="relative z-10">
         {/* Header */}
-        <header className="p-6 bg-black/20 backdrop-blur-lg border-b border-white/10">
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-                <i className="ri-tools-line text-white text-xl"></i>
+        <header className="relative z-10 bg-black/20 backdrop-blur-lg border-b border-white/10">
+          <div className="p-6">
+            <div className="max-w-7xl mx-auto flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                  <i className="ri-tools-line text-white text-xl"></i>
+                </div>
+                <h1 className="text-2xl font-bold text-white font-pacifico">Nxt Ultimate Tools</h1>
               </div>
-              <h1 className="text-2xl font-bold text-white font-pacifico">Nxt Ultimate Tools</h1>
+              <nav className="hidden md:flex space-x-8">
+                <a href="#home" className="text-white/80 hover:text-white transition-colors">Home</a>
+                <a href="#tools" className="text-white/80 hover:text-white transition-colors">Tools</a>
+                <a href="#features" className="text-white/80 hover:text-white transition-colors">Features</a>
+                <a href="#faq" className="text-white/80 hover:text-white transition-colors">FAQ</a>
+              </nav>
             </div>
-            <nav className="hidden md:flex space-x-8">
-              <a href="#home" className="text-white/80 hover:text-white transition-colors">Home</a>
-              <a href="#tools" className="text-white/80 hover:text-white transition-colors">Tools</a>
-              <a href="#features" className="text-white/80 hover:text-white transition-colors">Features</a>
-              <a href="#faq" className="text-white/80 hover:text-white transition-colors">FAQ</a>
-            </nav>
           </div>
+          
+          {/* ====== AD CODE KI NAYI JAGAH YAHAN HEADER KE ANDAR HAI ====== */}
+          <div
+            className="flex justify-center pt-4"
+            dangerouslySetInnerHTML={{
+              __html: `
+                <script type="text-javascript">
+                    atOptions = {
+                        'key' : 'cb2be0a2984ea6df52ff2a61089fbce3',
+                        'format' : 'iframe',
+                        'height' : 90,
+                        'width' : 728,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//nastylayer.com/cb2be0a2984ea6df52ff2a61089fbce3/invoke.js"></script>
+              `,
+            }}
+          />
+          {/* ============================================================= */}
         </header>
-
-        {/* ====== HEADER AD CODE YAHAN HAI ====== */}
-        <div
-          className="flex justify-center my-4"
-          dangerouslySetInnerHTML={{
-            __html: `
-              <script type="text/javascript">
-                  atOptions = {
-                      'key' : 'cb2be0a2984ea6df52ff2a61089fbce3',
-                      'format' : 'iframe',
-                      'height' : 90,
-                      'width' : 728,
-                      'params' : {}
-                  };
-              </script>
-              <script type="text/javascript" src="//nastylayer.com/cb2be0a2984ea6df52ff2a61089fbce3/invoke.js"></script>
-            `,
-          }}
-        />
-        {/* ======================================= */}
 
         {/* Hero Section */}
         <section id="home" className="pt-20 pb-16 px-6">
@@ -104,8 +106,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        {/* Featured Tools Preview */}
+        
         <section id="tools" className="py-20 px-6">
             <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
@@ -139,7 +140,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Features Section */}
         <section id="features" className="py-20 px-6 bg-black/20">
         <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
@@ -167,7 +167,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FAQ Section */}
         <section id="faq" className="py-20 px-6">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
