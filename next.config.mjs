@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Aapki purani settings yahan hain
   output: 'export',
   images: {
     unoptimized: true,
@@ -9,4 +10,5 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+// Naya, modern "export" format
+export default nextConfig;
