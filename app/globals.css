@@ -3,22 +3,34 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  @keyframes float {
-    0% {
-      transform: translateY(0px) translateX(0px) rotate(0deg);
-      opacity: 1;
-    }
-    50% {
-      transform: translateY(-30px) translateX(20px) rotate(180deg);
-      opacity: 0.5;
-    }
-    100% {
-      transform: translateY(0px) translateX(0px) rotate(360deg);
-      opacity: 1;
-    }
+/* Custom Royal Theme Properties */
+:root {
+  --bg-color: #120000; /* Deep, rich black with a hint of red */
+  --primary-red: #FF3A3A; /* Bright, powerful red */
+  --primary-gold: #FFD700; /* Classic, rich gold */
+  --text-primary: #F5F5F5; /* Soft white for readability */
+  --text-secondary: #AAAAAA; /* Grey for secondary text */
+  --border-color: rgba(255, 215, 0, 0.2); /* Faint golden border */
+  --card-bg: rgba(0, 0, 0, 0.4); /* Semi-transparent black for cards */
+}
+
+/* Red-Golden Plexus Animation */
+@keyframes plexus-animation {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.8);
   }
-  .animate-float {
-    animation: float linear infinite;
+  50% {
+    opacity: 0.7;
   }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px) scale(1.2);
+  }
+}
+.plexus-particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: plexus-animation linear infinite;
+  mix-blend-mode: screen;
 }
