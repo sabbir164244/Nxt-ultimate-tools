@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Aapki purani settings yahan hain
-  output: 'export',
+  // output: 'export' wali line yahan se HATA DI GAYI HAI.
+  // Humne purani zaroori settings ko waise hi rakha hai.
   images: {
     unoptimized: true,
   },
