@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+
+// --- PURANE SABHI TOOLS YAHAN IMPORTED HAIN ---
 import PDFGenerator from './PDFGenerator';
 import WordToPDF from './WordToPDF';
 import TextToVoice from './TextToVoice';
@@ -32,7 +34,16 @@ import GradientGenerator from './GradientGenerator';
 import HashGenerator from './HashGenerator';
 import DiscountCalculator from './DiscountCalculator';
 
+// --- NAYE AI TOOLS KO IMPORT KAREIN ---
+import AICVGenerator from './AICVGenerator';
+import AIApplicationLetterGenerator from './AIApplicationLetterGenerator';
+import AIFormalLetterGenerator from './AIFormalLetterGenerator';
+import AIExcelGenerator from './AIExcelGenerator';
+import AIFormGenerator from './AIFormGenerator';
+
+
 const allTools = [
+  // --- PURANE SABHI 29 TOOLS KI LIST YAHAN HAI ---
   { id: 'age-calculator', name: 'Age Calculator', icon: 'ri-calendar-2-line', category: 'Utility', component: AgeCalculator },
   { id: 'bmi-calculator', name: 'BMI Calculator', icon: 'ri-heart-pulse-line', category: 'Health', component: BMICalculator },
   { id: 'calculator', name: 'Dynamic Calculator', icon: 'ri-calculator-line', category: 'Utility', component: Calculator },
@@ -62,9 +73,16 @@ const allTools = [
   { id: 'unit-converter', name: 'Unit Converter', icon: 'ri-ruler-2-line', category: 'Utility', component: UnitConverter },
   { id: 'url-encoder-decoder', name: 'URL Encoder/Decoder', icon: 'ri-link', category: 'Developer', component: URLEncoderDecoder },
   { id: 'word-to-pdf', name: 'Word to PDF', icon: 'ri-file-word-line', category: 'PDF', component: WordToPDF },
+  
+  // --- NAYE AI TOOLS KO LIST MEIN ADD KAREIN ---
+  { id: 'ai-cv-generator', name: 'AI CV Generator', icon: 'ri-file-user-line', category: 'AI', component: AICVGenerator },
+  { id: 'ai-application-letter-generator', name: 'AI Application Letter Generator', icon: 'ri-mail-send-line', category: 'AI', component: AIApplicationLetterGenerator },
+  { id: 'ai-formal-letter-generator', name: 'AI Formal Letter Generator', icon: 'ri-draft-line', category: 'AI', component: AIFormalLetterGenerator },
+  { id: 'ai-excel-generator', name: 'AI Excel Sheet Generator', icon: 'ri-file-excel-2-line', category: 'AI', component: AIExcelGenerator },
+  { id: 'ai-form-generator', name: 'AI HTML Form Generator', icon: 'ri-input-method-line', category: 'AI', component: AIFormGenerator },
 ];
 
-const categories = ['All', 'PDF', 'Image', 'Text', 'Audio', 'Developer', 'Finance', 'Utility', 'Security', 'Health', 'Design', 'Game', 'Fun'];
+const categories = ['All', 'AI', 'PDF', 'Image', 'Text', 'Audio', 'Developer', 'Finance', 'Utility', 'Security', 'Health', 'Design', 'Game', 'Fun'];
 
 export default function ToolsPage() {
   const [selectedTool, setSelectedTool] = useState(null);
@@ -146,11 +164,11 @@ export default function ToolsPage() {
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap cursor-pointer ${
                     selectedCategory === category
-                      ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
+                      ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg shadow-purple-500/20'
                       : 'bg-white/10 text-white/80 hover:bg-white/20'
                   }`}
                 >
-                  {category}
+                  {category === 'AI' ? '✨ AI Tools' : category}
                 </button>
               ))}
             </div>
@@ -161,8 +179,20 @@ export default function ToolsPage() {
               <div
                 key={tool.id}
                 onClick={() => setSelectedTool(tool)}
-                className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:scale-105 cursor-pointer group"
+                // YAHAN PAR HIGHLIGHTING LOGIC ADD KIYA GAYA HAI
+                className={`bg-white/10 backdrop-blur-lg rounded-xl p-6 border transition-all duration-300 transform hover:scale-105 cursor-pointer group relative overflow-hidden ${
+                  tool.category === 'AI' 
+                  ? 'border-teal-400/50 hover:border-teal-300 shadow-lg shadow-teal-500/10' 
+                  : 'border-white/20 hover:bg-white/15'
+                }`}
               >
+                {/* AI Tools ke liye special badge */}
+                {tool.category === 'AI' && (
+                  <div className="absolute top-0 right-0 px-3 py-1 bg-gradient-to-r from-teal-400 to-cyan-500 text-white text-xs font-bold rounded-bl-lg shadow-md">
+                    ✨ AI
+                  </div>
+                )}
+                
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   <i className={`${tool.icon} text-white text-xl`}></i>
                 </div>
@@ -186,4 +216,4 @@ export default function ToolsPage() {
       </div>
     </div>
   );
-      }
+  }
