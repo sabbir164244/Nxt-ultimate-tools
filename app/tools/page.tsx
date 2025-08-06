@@ -41,9 +41,8 @@ import AIFormalLetterGenerator from './AIFormalLetterGenerator';
 import AIExcelGenerator from './AIExcelGenerator';
 import AIFormGenerator from './AIFormGenerator';
 
-
+// --- POORI, COMPLETE TOOLS KI LIST (34 TOOLS) ---
 const allTools = [
-  // --- PURANE SABHI 29 TOOLS KI LIST YAHAN HAI ---
   { id: 'age-calculator', name: 'Age Calculator', icon: 'ri-calendar-2-line', category: 'Utility', component: AgeCalculator },
   { id: 'bmi-calculator', name: 'BMI Calculator', icon: 'ri-heart-pulse-line', category: 'Health', component: BMICalculator },
   { id: 'calculator', name: 'Dynamic Calculator', icon: 'ri-calculator-line', category: 'Utility', component: Calculator },
@@ -73,8 +72,6 @@ const allTools = [
   { id: 'unit-converter', name: 'Unit Converter', icon: 'ri-ruler-2-line', category: 'Utility', component: UnitConverter },
   { id: 'url-encoder-decoder', name: 'URL Encoder/Decoder', icon: 'ri-link', category: 'Developer', component: URLEncoderDecoder },
   { id: 'word-to-pdf', name: 'Word to PDF', icon: 'ri-file-word-line', category: 'PDF', component: WordToPDF },
-  
-  // --- NAYE AI TOOLS KO LIST MEIN ADD KAREIN ---
   { id: 'ai-cv-generator', name: 'AI CV Generator', icon: 'ri-file-user-line', category: 'AI', component: AICVGenerator },
   { id: 'ai-application-letter-generator', name: 'AI Application Letter Generator', icon: 'ri-mail-send-line', category: 'AI', component: AIApplicationLetterGenerator },
   { id: 'ai-formal-letter-generator', name: 'AI Formal Letter Generator', icon: 'ri-draft-line', category: 'AI', component: AIFormalLetterGenerator },
@@ -98,26 +95,24 @@ export default function ToolsPage() {
   if (selectedTool) {
     const ToolComponent = selectedTool.component;
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-        <header className="p-6 bg-black/20 backdrop-blur-lg border-b border-white/10">
+      <div className="min-h-screen bg-[#120000]">
+        <header className="p-6 bg-black/30 backdrop-blur-lg border-b border-[--border-color]">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => setSelectedTool(null)}
-                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors cursor-pointer"
+                className="w-10 h-10 bg-black/30 rounded-lg flex items-center justify-center hover:bg-black/50 transition-colors border border-[--border-color]"
               >
                 <i className="ri-arrow-left-line text-white text-lg"></i>
               </button>
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-br from-[#FF3A3A] to-[#FFD700] rounded-lg flex items-center justify-center shadow-md shadow-red-500/20">
                   <i className={`${selectedTool.icon} text-white text-sm`}></i>
                 </div>
                 <h1 className="text-xl font-bold text-white">{selectedTool.name}</h1>
               </div>
             </div>
-            <Link href="/" className="text-white/80 hover:text-white transition-colors cursor-pointer">
-              Home
-            </Link>
+            <Link href="/" className="text-white/80 hover:text-white transition-colors">Home</Link>
           </div>
         </header>
         <ToolComponent />
@@ -126,35 +121,31 @@ export default function ToolsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      <header className="p-6 bg-black/20 backdrop-blur-lg border-b border-white/10">
+    <div className="min-h-screen bg-[#120000] text-white">
+      <header className="p-6 bg-black/30 backdrop-blur-lg border-b border-[--border-color]">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#FF3A3A] to-[#FFD700] rounded-lg flex items-center justify-center shadow-lg shadow-red-500/20">
               <i className="ri-tools-line text-white text-lg"></i>
             </div>
             <h1 className="text-xl font-bold text-white font-pacifico">All Tools</h1>
           </div>
-          <Link href="/" className="text-white/80 hover:text-white transition-colors cursor-pointer">
-            Home
-          </Link>
+          <Link href="/" className="text-white/80 hover:text-white transition-colors">Home</Link>
         </div>
       </header>
 
       <div className="p-6">
         <div className="max-w-7xl mx-auto">
           <div className="mb-8">
-            <div className="flex flex-col md:flex-row gap-4 mb-6">
-              <div className="relative flex-1">
-                <i className="ri-search-line absolute left-4 top-1/2 transform -translate-y-1/2 text-white/50 text-lg"></i>
-                <input
-                  type="text"
-                  placeholder="Search tools..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                />
-              </div>
+            <div className="relative mb-6">
+              <i className="ri-search-line absolute left-4 top-1/2 transform -translate-y-1/2 text-white/50 text-lg"></i>
+              <input
+                type="text"
+                placeholder="Search tools..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-12 pr-4 py-3 bg-[--card-bg] backdrop-blur-lg rounded-xl border border-[--border-color] text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#FFD700]"
+              />
             </div>
 
             <div className="flex flex-wrap gap-3">
@@ -162,10 +153,10 @@ export default function ToolsPage() {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap cursor-pointer ${
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                     selectedCategory === category
-                      ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg shadow-purple-500/20'
-                      : 'bg-white/10 text-white/80 hover:bg-white/20'
+                      ? 'bg-gradient-to-r from-[#FF3A3A] to-[#a82727] text-white shadow-lg shadow-red-500/30'
+                      : 'bg-[--card-bg] text-white/80 hover:bg-black/40 border border-transparent hover:border-[--border-color]'
                   }`}
                 >
                   {category === 'AI' ? '✨ AI Tools' : category}
@@ -179,41 +170,31 @@ export default function ToolsPage() {
               <div
                 key={tool.id}
                 onClick={() => setSelectedTool(tool)}
-                // YAHAN PAR HIGHLIGHTING LOGIC ADD KIYA GAYA HAI
-                className={`bg-white/10 backdrop-blur-lg rounded-xl p-6 border transition-all duration-300 transform hover:scale-105 cursor-pointer group relative overflow-hidden ${
+                className={`bg-[--card-bg] backdrop-blur-lg rounded-xl p-6 border transition-all duration-300 transform hover:-translate-y-2 cursor-pointer group relative overflow-hidden ${
                   tool.category === 'AI' 
-                  ? 'border-teal-400/50 hover:border-teal-300 shadow-lg shadow-teal-500/10' 
-                  : 'border-white/20 hover:bg-white/15'
+                  ? 'border-yellow-400/50 hover:border-yellow-300 shadow-lg shadow-yellow-500/10' 
+                  : 'border-[--border-color] hover:border-yellow-400/50'
                 }`}
               >
-                {/* AI Tools ke liye special badge */}
-                {tool.category === 'AI' && (
-                  <div className="absolute top-0 right-0 px-3 py-1 bg-gradient-to-r from-teal-400 to-cyan-500 text-white text-xs font-bold rounded-bl-lg shadow-md">
+                 {tool.category === 'AI' && (
+                  <div className="absolute top-0 right-0 px-3 py-1 bg-gradient-to-r from-[#FFD700] to-yellow-600 text-black text-xs font-bold rounded-bl-lg shadow-md">
                     ✨ AI
                   </div>
                 )}
-                
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#FF3A3A] to-[#FFD700] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-red-500/20">
                   <i className={`${tool.icon} text-white text-xl`}></i>
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">{tool.name}</h3>
-                <span className="inline-block px-3 py-1 bg-white/20 rounded-full text-xs text-white/80 mb-3">
+                <span className="inline-block px-3 py-1 bg-black/30 border border-white/10 rounded-full text-xs text-white/80 mb-3">
                   {tool.category}
                 </span>
-                <p className="text-blue-400 text-sm font-medium">Click to use →</p>
+                <p className="text-[#FFD700] text-sm font-medium">Click to use →</p>
               </div>
             ))}
           </div>
 
-          {filteredTools.length === 0 && (
-            <div className="text-center py-12">
-              <i className="ri-search-line text-white/30 text-6xl mb-4"></i>
-              <h3 className="text-xl font-bold text-white mb-2">No tools found</h3>
-              <p className="text-white/70">Try adjusting your search or category filter</p>
-            </div>
-          )}
         </div>
       </div>
     </div>
   );
-  }
+   }
