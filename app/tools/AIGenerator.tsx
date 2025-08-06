@@ -9,7 +9,7 @@ import * as XLSX from 'xlsx';
 // Professional fonts ki list
 const googleFonts = ["Roboto", "Open Sans", "Lato", "Montserrat", "Merriweather", "PT Sans", "Playfair Display", "Noto Sans", "Arial"];
 
-// Component ke props ka structure define karna, taaki har tool ise aasani se istemaal kar sake
+// Component ke props ka structure define karna
 interface AIGeneratorProps {
   toolName: string;
   icon: string;
@@ -21,7 +21,6 @@ interface AIGeneratorProps {
 }
 
 export default function AIGenerator({ toolName, icon, description, promptPlaceholder, initialPrompt, generatePrompt, isExcelTool = false }: AIGeneratorProps) {
-  // State variables jo user input, language, aur result ko manage karenge
   const [userInput, setUserInput] = useState(initialPrompt);
   const [language, setLanguage] = useState('English');
   const [generatedContent, setGeneratedContent] = useState('');
@@ -29,22 +28,32 @@ export default function AIGenerator({ toolName, icon, description, promptPlaceho
   const [font, setFont] = useState('Roboto');
   const previewRef = useRef<HTMLDivElement>(null);
 
-  // AI se content generate karne ka function
+  // AI se content generate karne ka function (UPDATED FOR BETTER ERROR HANDLING)
   const handleGenerate = async () => {
     setIsGenerating(true);
     setGeneratedContent('');
     const prompt = generatePrompt(userInput, language);
     try {
-      // Hamare safe backend API route (Step 3) ko call karein
       const response = await fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt }),
       });
+      
       const data = await response.json();
-      setGeneratedContent(response.ok ? data.generatedContent : `Error: ${data.error}`);
+      
+      if (response.ok) {
+        setGeneratedContent(data.generatedContent);
+      } else {
+        // Asli error ko screen par dikhayein
+        const errorMessage = `API ERROR (Status: ${response.status}): ${data.error || 'Failed to fetch from server.'}`;
+        setGeneratedContent(errorMessage);
+        console.error(errorMessage, data);
+      }
     } catch (error) {
-      setGeneratedContent('An unexpected error occurred. Please check the console.');
+      const clientErrorMessage = `CLIENT-SIDE ERROR: Could not connect to the API. Check network. Details: ${(error as Error).message}`;
+      setGeneratedContent(clientErrorMessage);
+      console.error(clientErrorMessage);
     }
     setIsGenerating(false);
   };
@@ -83,7 +92,6 @@ export default function AIGenerator({ toolName, icon, description, promptPlaceho
   const downloadExcel = () => {
     if (!generatedContent) return;
     try {
-      // AI se generate kiye hue Markdown table ko Excel data mein convert karna
       const lines = generatedContent.trim().split('\n').filter(line => line.includes('|'));
       const data = lines.map(line => line.split('|').map(s => s.trim()).slice(1, -1));
       if (data.length < 2) throw new Error("No valid table data found.");
@@ -148,4 +156,4 @@ export default function AIGenerator({ toolName, icon, description, promptPlaceho
       </div>
     </div>
   );
-    }
+        }
